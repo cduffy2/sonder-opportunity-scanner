@@ -78,6 +78,10 @@ Search for **current and upcoming work opportunities** that are a strong fit for
 | Design Gigs for Good | designgigsforgood.com |
 | Idealist | idealist.org — filter for consulting and contract roles |
 | Working for a Better World (WFAW) | wfpusa.org/working-for-a-better-world — UN/NGO consultancy calls |
+| Gavi | gavi.org — check for RFPs, tenders, and consultancy opportunities |
+| CEPI | cepi.net — check for RFPs, tenders, and consultancy opportunities |
+| PATH | path.org — check for RFPs, tenders, and consultancy opportunities |
+| JSI | jsi.com — check for RFPs, tenders, and consultancy opportunities |
 
 ### Tier 2 — Broader web search queries
 
