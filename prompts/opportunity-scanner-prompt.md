@@ -82,6 +82,7 @@ Search for **current and upcoming work opportunities** that are a strong fit for
 | CEPI | cepi.net — check for RFPs, tenders, and consultancy opportunities |
 | PATH | path.org — check for RFPs, tenders, and consultancy opportunities |
 | JSI | jsi.com — check for RFPs, tenders, and consultancy opportunities |
+| Clinton Health Access Initiative (CHAI) | clintonhealthaccess.org — check for RFPs, tenders, and consultancy opportunities |
 
 ### Tier 2 — Broader web search queries
 
