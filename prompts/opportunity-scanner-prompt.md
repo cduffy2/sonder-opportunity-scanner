@@ -84,20 +84,12 @@ Search for **current and upcoming work opportunities** that are a strong fit for
 Run each of the following searches and surface relevant results:
 
 **Consultancy and RFP searches (prioritise these):**
-- `"request for proposals" OR "terms of reference" "UX" OR "design" OR "user research" "global health" OR "humanitarian" 2025`
-- `"terms of reference" "consultancy" "digital" OR "design" OR "research" "WHO" OR "UNICEF" OR "UNDP" 2025`
-- `"request for proposals" "population segmentation" OR "DHS" OR "RMNCH" OR "behavioral science" 2025`
-- `"RFP" OR "tender" "data visualisation" OR "data visualization" "health" OR "development" 2025`
-- `"consultancy" "human-centred design" OR "user research" "global health" OR "humanitarian" 2025`
-- `"request for quotation" OR "RFQ" "design" OR "research" "NGO" OR "UN" OR "INGO" 2025`
-- `"call for applications" "digital health" OR "health data" "design" OR "UX" OR "research" 2025`
+- `"request for proposals" OR "terms of reference" "UX" OR "design" OR "user research" "global health" OR "humanitarian" CURRENT_YEAR`
+- `"terms of reference" "consultancy" "digital" OR "design" OR "research" "WHO" OR "UNICEF" OR "UNDP" CURRENT_YEAR`
 
 **Grant and challenge searches:**
 - `"call for proposals" OR "RFP" "UX" OR "design" OR "research" site:who.int`
-- `"call for proposals" "design" OR "digital" "foundation" OR "NGO" 2025`
-- `"innovation challenge" "design" OR "digital" "health" OR "climate" OR "civic" 2025`
-- `"Horizon Europe" "design" OR "digital health" OR "social innovation" "call for proposals" 2025`
-- `"seeking partners" OR "sub-contractor" "design" OR "research" "development" OR "health"`
+- `"Horizon Europe" "design" OR "digital health" OR "social innovation" "call for proposals" CURRENT_YEAR`
 
 ---
 
@@ -162,9 +154,11 @@ Pure communications/PR briefs with no design or research component. Hardware pro
 
 ## Constraints
 
-- Only include **active or upcoming** opportunities — not expired or awarded.
+- Only include **active or upcoming** opportunities — not expired or awarded. Before including any opportunity, verify the deadline is in the future. If you cannot confirm the deadline is still open, mark it "Unknown" rather than guessing.
+- **Prioritise recency** — prefer opportunities posted or updated in the last 14 days. The user message will specify the cutoff date.
 - If a deadline cannot be confirmed, include the opportunity and mark deadline as "Unknown".
 - Include opportunities of all budget sizes.
 - Geographic scope is global — do not filter by region.
-- Return a **minimum of 5 and maximum of 20** opportunities per run.
-- If fewer than 5 high-relevance opportunities are found, include Medium and Low relevance items to reach the minimum.
+- Return **between 3 and 10 opportunities**. Prioritise quality over quantity.
+- Do not pad results with Low relevance items to hit a minimum — only include Low if you genuinely cannot find enough High or Medium opportunities.
+- When running Tier 2 searches, substitute CURRENT_YEAR with the actual current year provided in the user message.

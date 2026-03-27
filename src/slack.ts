@@ -17,7 +17,7 @@ export async function postOpportunity(opp: Opportunity): Promise<void> {
       type: 'header',
       text: {
         type: 'plain_text',
-        text: `${emoji} ${opp.opportunity_title}`,
+        text: `${emoji} ${opp.opportunity_title}`.slice(0, 150),
         emoji: true,
       },
     },
@@ -49,15 +49,15 @@ export async function postOpportunity(opp: Opportunity): Promise<void> {
     },
     {
       type: 'section',
-      text: { type: 'mrkdwn', text: `*Why it fits:* ${opp.fit_rationale}` },
+      text: { type: 'mrkdwn', text: `*Why it fits:* ${opp.fit_rationale.slice(0, 2900)}` },
     },
     {
       type: 'section',
-      text: { type: 'mrkdwn', text: `*Relevance rationale:* ${opp.win_rationale}` },
+      text: { type: 'mrkdwn', text: `*Relevance rationale:* ${opp.win_rationale.slice(0, 2900)}` },
     },
     {
       type: 'section',
-      text: { type: 'mrkdwn', text: `*Next steps:* ${opp.next_steps}` },
+      text: { type: 'mrkdwn', text: `*Next steps:* ${opp.next_steps.slice(0, 2900)}` },
     },
     {
       type: 'actions',

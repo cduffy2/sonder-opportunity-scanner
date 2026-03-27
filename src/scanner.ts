@@ -5,24 +5,54 @@ import { Opportunity } from './types';
 
 const client = new Anthropic();
 
+function loadIrrelevantContext(): string {
+  try {
+    const raw = fs.readFileSync(
+      path.join(__dirname, '../data/irrelevant-opportunities.json'),
+      'utf-8'
+    );
+    const data = JSON.parse(raw) as { urls: string[]; funders: string[] };
+    const parts: string[] = [];
+    if (data.funders?.length) {
+      parts.push(`Deprioritise or exclude these funders/organisations (previously marked irrelevant): ${data.funders.join(', ')}.`);
+    }
+    if (data.urls?.length) {
+      parts.push(`Do not include opportunities from these URLs (previously seen and marked irrelevant): ${data.urls.join(', ')}.`);
+    }
+    return parts.length ? `\n\n## Feedback from previous scans\n${parts.join('\n')}` : '';
+  } catch {
+    return '';
+  }
+}
+
 export async function scanOpportunities(): Promise<Opportunity[]> {
-  const systemPrompt = fs.readFileSync(
+  const basePrompt = fs.readFileSync(
     path.join(__dirname, '../prompts/opportunity-scanner-prompt.md'),
     'utf-8'
   );
+  const systemPrompt = basePrompt + loadIrrelevantContext();
 
-  const today = new Date().toISOString().split('T')[0];
+  const now = new Date();
+  const today = now.toISOString().split('T')[0];
+  const year = now.getFullYear();
+  const twoWeeksAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
 
   const messages: Anthropic.Messages.MessageParam[] = [
     {
       role: 'user',
-      content: `Today is ${today}. Please run the full opportunity scan and return results as a JSON array. Only include opportunities that are currently open or upcoming — not expired.`,
+      content: `Today is ${today} (year: ${year}). Please run the full opportunity scan and return results as a JSON array.
+
+Requirements:
+- Only include opportunities that are currently open or upcoming — not expired or already awarded.
+- Prioritise opportunities posted or updated after ${twoWeeksAgo} (within the last 14 days). Only include older opportunities if they are still clearly open and highly relevant.
+- When running Tier 2 searches, use ${year} as the year in all search queries.
+- Return between 3 and 10 opportunities only. Quality over quantity — do not pad results with low-relevance items to hit a minimum. Only include Low relevance items if you cannot find enough High or Medium ones.`,
     },
   ];
 
   const response = await client.messages.create({
     model: 'claude-sonnet-4-5',
-    max_tokens: 8192,
+    max_tokens: 3500,
     tools: [{ type: 'web_search_20250305', name: 'web_search' }],
     system: systemPrompt,
     messages,
