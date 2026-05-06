@@ -58,6 +58,46 @@ Add the following secrets to your repository (Settings → Secrets → Actions):
 
 The workflow runs automatically every Wednesday at 07:00 UTC. You can also trigger it manually from the Actions tab.
 
+## Sources scanned
+
+### Tier 1a — Grants and funding
+
+| Source | URL |
+|---|---|
+| EU Funding & Tenders Portal | ec.europa.eu/info/funding-tenders |
+| Gates Foundation Grand Challenges | gcgh.grandchallenges.org |
+| Wellcome Trust | wellcome.org/grant-funding |
+| Global Innovation Fund | globalinnovation.fund |
+| Mozilla Foundation | foundation.mozilla.org/en/what-we-fund |
+| Omidyar Network | omidyar.com/our_work |
+
+### Tier 1b — Consultancy, RFP, and tenders
+
+| Source | URL |
+|---|---|
+| Devex | devex.com |
+| UN Global Marketplace (UNGM) | ungm.org |
+| World Bank / IFC | worldbank.org/en/projects-operations/procurement |
+| USAID Business Forecast | usaid.gov/partner-with-us/business-forecast |
+| ReliefWeb | reliefweb.int/jobs |
+| Design Gigs for Good | designgigsforgood.com |
+| Idealist | idealist.org |
+| Working for a Better World | wfpusa.org/working-for-a-better-world |
+| Gavi | gavi.org |
+| CEPI | cepi.net |
+| PATH | path.org |
+| JSI | jsi.com |
+| Clinton Health Access Initiative (CHAI) | clintonhealthaccess.org |
+
+### Tier 2 — Broader web searches
+
+In addition to direct source scanning, Claude runs targeted web searches for:
+
+- RFPs and terms of reference for UX/design/research in global health and humanitarian contexts
+- UN agency consultancy calls (WHO, UNICEF, UNDP)
+- Horizon Europe design and digital health calls for proposals
+- WHO grant and proposal calls
+
 ## Marking opportunities as irrelevant
 
 To prevent a funder or URL from surfacing again, add an entry to [data/irrelevant-opportunities.json](data/irrelevant-opportunities.json). Claude will deprioritise these sources in future scans.
