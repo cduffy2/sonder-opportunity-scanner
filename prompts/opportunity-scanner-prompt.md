@@ -65,6 +65,11 @@ Search for **current and upcoming work opportunities** that are a strong fit for
 | Global Innovation Fund | globalinnovation.fund |
 | Mozilla Foundation grants | foundation.mozilla.org/en/what-we-fund |
 | Omidyar Network | omidyar.com/our_work |
+| Robert Wood Johnson Foundation | rwjf.org/en/grants |
+| Skoll Foundation | skoll.org — check for awards, grants, and calls |
+| Echoing Green | echoinggreen.org — fellowships and grants for social entrepreneurs |
+| Luminate | luminategroup.com — civic tech and social justice grants |
+| Open Society Foundations | opensocietyfoundations.org/grants |
 
 ### Tier 1b — Consultancy, RFP, and tender sources (search these directly)
 
@@ -83,6 +88,28 @@ Search for **current and upcoming work opportunities** that are a strong fit for
 | PATH | path.org — check for RFPs, tenders, and consultancy opportunities |
 | JSI | jsi.com — check for RFPs, tenders, and consultancy opportunities |
 | Clinton Health Access Initiative (CHAI) | clintonhealthaccess.org — check for RFPs, tenders, and consultancy opportunities |
+| Sustainable Ocean Alliance | sustainableocean.com — contracts, fellowships, and programme roles |
+| 100x Impact | 100x.org — ITQs, research and ecosystem intelligence contracts |
+| LSE (London School of Economics) | lse.ac.uk — invitation to quote, research partnerships, consultancy |
+
+### Tier 1c — Corporate CSR and wellbeing grant programmes (search these directly)
+
+These are corporate grant programmes that fund nonprofits and social ventures. Search each for currently open rounds:
+
+| Funder | Notes |
+|---|---|
+| lululemon | Community Wellbeing Grant — movement, mental health, wellbeing; open to nonprofits worldwide |
+| Patagonia Environmental Grants | environment, climate, grassroots activism |
+| Salesforce.org | nonprofits, education, workforce |
+| Google.org | Impact Challenge grants for nonprofits using technology |
+| Cisco Foundation | technology access, education, economic empowerment |
+| IKEA Foundation | climate, refugee empowerment |
+| Mastercard Foundation | youth economic inclusion, education in Africa |
+| Nike Foundation | community impact, girls and women, sport for social good |
+| Meta Social Impact | community resilience, digital inclusion |
+| Vodafone Foundation | technology for good, connectivity, social impact |
+
+Search broadly: `"[funder name]" "grant" OR "community grant" OR "call for applications" CURRENT_YEAR`
 
 ### Tier 2 — Broader web search queries
 
@@ -91,10 +118,18 @@ Run each of the following searches and surface relevant results:
 **Consultancy and RFP searches (prioritise these):**
 - `"request for proposals" OR "terms of reference" "UX" OR "design" OR "user research" "global health" OR "humanitarian" CURRENT_YEAR`
 - `"terms of reference" "consultancy" "digital" OR "design" OR "research" "WHO" OR "UNICEF" OR "UNDP" CURRENT_YEAR`
+- `"invitation to quote" OR "ITQ" "research" OR "design" OR "insights" "social venture" OR "social enterprise" OR "impact" CURRENT_YEAR`
+- `"call for applications" OR "open call" "community grant" OR "wellbeing grant" OR "social impact grant" CURRENT_YEAR`
 
 **Grant and challenge searches:**
 - `"call for proposals" OR "RFP" "UX" OR "design" OR "research" site:who.int`
 - `"Horizon Europe" "design" OR "digital health" OR "social innovation" "call for proposals" CURRENT_YEAR`
+- `"call for applications" "nonprofit" OR "NGO" "wellbeing" OR "community" OR "health" grant CURRENT_YEAR`
+- `"ecosystem insights" OR "scaling insights" OR "systems change" "consultancy" OR "partner" OR "research" CURRENT_YEAR`
+
+**Scan LinkedIn and social sources for recently posted opportunities:**
+- Search: `site:linkedin.com "call for applications" OR "open call" OR "grant" OR "RFP" "social impact" OR "wellbeing" OR "global health" CURRENT_YEAR`
+- Search: `"Imma Collective" OR "Philanthropy Women" OR "GrantStation" "grant" OR "RFP" OR "opportunity" CURRENT_YEAR` — these newsletters curate opportunities that mainstream sources miss
 
 ---
 
@@ -103,15 +138,17 @@ Run each of the following searches and surface relevant results:
 1. Global health — RMNCH, nutrition, health systems, data and analytics tools
 2. Civic technology and digital rights
 3. Humanitarian response and emergency contexts
-4. Climate and environment
+4. Climate, environment, and ocean sustainability
 5. International development — broad social impact
 6. Early-stage impact ventures requiring product or service design support
+7. Wellbeing, mental health, movement, and community resilience — including corporate CSR grants in these areas
+8. Social venture ecosystem — scaling, systems change, impact measurement, and ecosystem intelligence research
 
-**Types of work to surface:** consultancy contracts, RFPs, tenders, terms of reference, strategy, research, design, implementation support, advisory, solution development, data visualisation, platform design, software development, grants, innovation challenges.
+**Types of work to surface:** consultancy contracts, RFPs, tenders, invitations to quote (ITQs), terms of reference, strategy, research, design, implementation support, advisory, solution development, data visualisation, platform design, software development, grants, innovation challenges, fellowship programmes with a research or design component, community grants open to cooperatives or social enterprises.
 
 **Aim for a balanced mix:** at least half of results should be consultancy/RFP/tender opportunities (paid work), not just grants and challenges.
 
-**Types of clients/funders to include:** foundations, multilaterals, UN agencies, NGOs, bilateral donors, innovation funds, government digital agencies, impact-focused start-ups and accelerators.
+**Types of clients/funders to include:** foundations, multilaterals, UN agencies, NGOs, bilateral donors, innovation funds, government digital agencies, impact-focused start-ups and accelerators, corporate CSR programmes, think tanks and research institutes, ocean and environmental organisations.
 
 ---
 

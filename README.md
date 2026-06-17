@@ -70,6 +70,11 @@ The workflow runs automatically every Wednesday at 07:00 UTC. You can also trigg
 | Global Innovation Fund | globalinnovation.fund |
 | Mozilla Foundation | foundation.mozilla.org/en/what-we-fund |
 | Omidyar Network | omidyar.com/our_work |
+| Robert Wood Johnson Foundation | rwjf.org/en/grants |
+| Skoll Foundation | skoll.org |
+| Echoing Green | echoinggreen.org |
+| Luminate | luminategroup.com |
+| Open Society Foundations | opensocietyfoundations.org/grants |
 
 ### Tier 1b — Consultancy, RFP, and tenders
 
@@ -88,6 +93,13 @@ The workflow runs automatically every Wednesday at 07:00 UTC. You can also trigg
 | PATH | path.org |
 | JSI | jsi.com |
 | Clinton Health Access Initiative (CHAI) | clintonhealthaccess.org |
+| Sustainable Ocean Alliance | sustainableocean.com |
+| 100x Impact | 100x.org |
+| LSE | lse.ac.uk |
+
+### Tier 1c — Corporate CSR and wellbeing grants
+
+Corporate grant programmes open to nonprofits and social enterprises, including: lululemon Community Wellbeing Grant, Patagonia Environmental Grants, Google.org Impact Challenge, Salesforce.org, Cisco Foundation, IKEA Foundation, Mastercard Foundation, Nike Foundation, Meta Social Impact, Vodafone Foundation.
 
 ### Tier 2 — Broader web searches
 
@@ -97,6 +109,10 @@ In addition to direct source scanning, Claude runs targeted web searches for:
 - UN agency consultancy calls (WHO, UNICEF, UNDP)
 - Horizon Europe design and digital health calls for proposals
 - WHO grant and proposal calls
+- Invitations to quote (ITQs) for social venture ecosystem research and insights
+- Corporate CSR and community wellbeing grant rounds
+- Ecosystem intelligence and systems change consultancy contracts
+- LinkedIn and social sector newsletter sources (Imma Collective, Philanthropy Women, GrantStation)
 
 ## Marking opportunities as irrelevant
 
