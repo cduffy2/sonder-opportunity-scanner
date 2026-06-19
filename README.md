@@ -65,6 +65,13 @@ The workflow runs automatically every Wednesday at 07:00 UTC. You can also trigg
 | Source | URL |
 |---|---|
 | EU Funding & Tenders Portal | ec.europa.eu/info/funding-tenders |
+| Research Ireland | researchireland.ie/funding |
+| Irish Research Council (IRC) | research.ie |
+| Science Foundation Ireland (SFI) | sfi.ie/funding |
+| UK Research and Innovation (UKRI) | ukri.org/opportunity |
+| Innovate UK | apply-for-innovation-funding.service.gov.uk |
+| NWO (Dutch Research Council) | nwo.nl/en/calls |
+| Academy of Finland | aka.fi/en/funding |
 | Gates Foundation Grand Challenges | gcgh.grandchallenges.org |
 | Wellcome Trust | wellcome.org/grant-funding |
 | Global Innovation Fund | globalinnovation.fund |

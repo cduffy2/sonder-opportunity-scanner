@@ -60,6 +60,13 @@ Search for **current and upcoming work opportunities** that are a strong fit for
 | Source | URL |
 |---|---|
 | EU Funding & Tenders Portal | ec.europa.eu/info/funding-tenders |
+| Research Ireland | researchireland.ie/funding — Irish national research funder; open calls for research and innovation |
+| Irish Research Council (IRC) | research.ie — IRC grants, fellowships, and collaborative awards |
+| Science Foundation Ireland (SFI) | sfi.ie/funding — SFI challenge programmes and research grants |
+| UK Research and Innovation (UKRI) | ukri.org/opportunity — UKRI open calls across Innovate UK, ESRC, MRC, and AHRC |
+| Innovate UK | apply-for-innovation-funding.service.gov.uk — UK innovation and R&D funding |
+| NWO (Dutch Research Council) | nwo.nl/en/calls — Netherlands; open science, health, and social research calls |
+| Academy of Finland | aka.fi/en/funding — Finnish national funder; relevant given Sonder's Finnish registration |
 | Gates Foundation Grand Challenges | gcgh.grandchallenges.org |
 | Wellcome Trust grants | wellcome.org/grant-funding |
 | Global Innovation Fund | globalinnovation.fund |
