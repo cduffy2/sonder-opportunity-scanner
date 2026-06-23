@@ -2,6 +2,7 @@ import Anthropic from '@anthropic-ai/sdk';
 import * as fs from 'fs';
 import * as path from 'path';
 import { Opportunity } from './types';
+import { scrapeAllTier1Sources, formatScrapedContent } from './firecrawl';
 
 const client = new Anthropic();
 
@@ -37,6 +38,14 @@ export async function scanOpportunities(): Promise<Opportunity[]> {
   const year = now.getFullYear();
   const twoWeeksAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
 
+  // Pre-scrape Tier 1 sources via Firecrawl for real page content
+  const scrapeResults = await scrapeAllTier1Sources();
+  const scrapedContent = formatScrapedContent(scrapeResults);
+  const failedScrapes = scrapeResults.filter((r) => r.markdown.length === 0);
+  if (failedScrapes.length > 0) {
+    console.log(`  Failed scrapes (will rely on web_search): ${failedScrapes.map((r) => r.label).join(', ')}`);
+  }
+
   const messages: Anthropic.Messages.MessageParam[] = [
     {
       role: 'user',
@@ -46,13 +55,15 @@ Requirements:
 - Only include opportunities that are currently open or upcoming — not expired or already awarded.
 - Prioritise opportunities posted or updated after ${twoWeeksAgo} (within the last 14 days). Only include older opportunities if they are still clearly open and highly relevant.
 - When running Tier 2 searches, use ${year} as the year in all search queries.
-- Return between 3 and 10 opportunities only. Quality over quantity — do not pad results with low-relevance items to hit a minimum. Only include Low relevance items if you cannot find enough High or Medium ones.`,
+- Return between 3 and 10 opportunities only. Quality over quantity — do not pad results with low-relevance items to hit a minimum. Only include Low relevance items if you cannot find enough High or Medium ones.
+
+${scrapedContent}`,
     },
   ];
 
   const response = await client.messages.create({
     model: 'claude-sonnet-4-5',
-    max_tokens: 3500,
+    max_tokens: 4096,
     tools: [{ type: 'web_search_20250305', name: 'web_search' }],
     system: systemPrompt,
     messages,
