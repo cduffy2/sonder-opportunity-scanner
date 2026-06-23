@@ -2,6 +2,22 @@ import FirecrawlApp from '@mendable/firecrawl-js';
 
 const client = new FirecrawlApp({ apiKey: process.env.FIRECRAWL_API_KEY! });
 
+const LINKEDIN_SEARCH_QUERIES = [
+  'site:linkedin.com "request for proposals" OR "terms of reference" "design" OR "UX" OR "researcher" "consultant" "global health" OR "social impact" OR "nonprofit"',
+  'site:linkedin.com "individual consultant" OR "small team" "design" OR "UX" OR "user research" "NGO" OR "nonprofit" OR "social impact"',
+  'site:linkedin.com "invitation to quote" OR "ITQ" OR "request for quotation" "design" OR "research" OR "digital" "social" OR "health" OR "development"',
+  'site:linkedin.com "call for applications" OR "open call" "consultant" OR "consultancy" "design" OR "research" OR "strategy" "impact" OR "wellbeing" OR "health"',
+  'site:linkedin.com "RFP" "UX" OR "design" OR "human-centred" OR "human-centered" "global health" OR "humanitarian" OR "international development"',
+];
+
+const RFP_SEARCH_QUERIES = [
+  '"request for proposals" "individual consultant" OR "small team" "UX" OR "design" OR "user research" "global health" OR "nonprofit" OR "NGO" 2026',
+  '"terms of reference" "consultant" "digital" OR "design" OR "research" "social impact" OR "wellbeing" OR "community" 2026',
+  'site:fundsforngos.org "request for proposals" OR "consultancy" OR "terms of reference" design OR research OR digital',
+  'site:impactpool.org "consultant" "design" OR "UX" OR "research" OR "digital"',
+  'site:developmentaid.org "consultant" "design" OR "UX" OR "research" OR "digital"',
+];
+
 // All Tier 1 sources to scrape directly each run
 const TIER1_SOURCES = [
   // Tier 1a — Grants and funding
@@ -26,6 +42,12 @@ const TIER1_SOURCES = [
   { label: 'Sustainable Ocean Alliance', url: 'https://sustainableocean.com/programs/' },
   { label: 'PATH Procurement', url: 'https://www.path.org/our-work/procurement/' },
   { label: 'Gavi Procurement', url: 'https://www.gavi.org/programme-support/procurement' },
+  { label: 'Funds for NGOs', url: 'https://www.fundsforngos.org/category/requests-for-proposals/' },
+  { label: 'ImpactPool Consultancies', url: 'https://www.impactpool.org/jobs?type=consultancy' },
+  { label: 'DevelopmentAid Consultancies', url: 'https://www.developmentaid.org/jobs/search#type=consultant' },
+  { label: 'EU TED Tenders', url: 'https://ted.europa.eu/en/search/result?query=design+OR+research+OR+UX&scope=ACTIVE' },
+  { label: 'UNDP Procurement Notices', url: 'https://procurement-notices.undp.org/' },
+  { label: 'Contracts Finder UK', url: 'https://www.contractsfinder.service.gov.uk/Search/Results' },
 ];
 
 export interface ScrapeResult {
@@ -33,6 +55,11 @@ export interface ScrapeResult {
   url: string;
   markdown: string;
   error?: string;
+}
+
+export interface SearchResult {
+  query: string;
+  hits: Array<{ url: string; title: string; description: string }>;
 }
 
 async function scrapeOne(label: string, url: string): Promise<ScrapeResult> {
@@ -89,4 +116,70 @@ export function formatScrapedContent(results: ScrapeResult[]): string {
   );
 
   return `## Live content scraped from Tier 1 sources\n\nThe following is real page content scraped directly from each source. Extract opportunities from this content first, then supplement with web search.\n\n${sections.join('\n\n---\n\n')}`;
+}
+
+async function runSearch(query: string): Promise<SearchResult> {
+  try {
+    const res = await fetch('https://api.firecrawl.dev/v1/search', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.FIRECRAWL_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ query, limit: 8 }),
+    });
+    if (!res.ok) {
+      console.log(`  Search HTTP ${res.status} for query "${query.slice(0, 60)}..."`);
+      return { query, hits: [] };
+    }
+    const json = await res.json() as any;
+    const items: any[] = json?.data ?? json?.web ?? [];
+    const hits = items.map((item: any) => ({
+      url: item.url ?? '',
+      title: item.title ?? '',
+      description: item.description ?? '',
+    }));
+    return { query, hits };
+  } catch (err) {
+    console.log(`  Search failed: ${String(err).slice(0, 120)}`);
+    return { query, hits: [] };
+  }
+}
+
+export async function runLinkedInAndRFPSearches(): Promise<SearchResult[]> {
+  const allQueries = [...LINKEDIN_SEARCH_QUERIES, ...RFP_SEARCH_QUERIES];
+  console.log(`Running ${allQueries.length} LinkedIn/RFP searches via Firecrawl...`);
+
+  // Run in parallel batches of 5
+  const results: SearchResult[] = [];
+  const batchSize = 5;
+
+  for (let i = 0; i < allQueries.length; i += batchSize) {
+    const batch = allQueries.slice(i, i + batchSize);
+    const batchResults = await Promise.all(batch.map(runSearch));
+    results.push(...batchResults);
+
+    const totalHits = batchResults.reduce((sum, r) => sum + r.hits.length, 0);
+    console.log(`  Search batch ${Math.floor(i / batchSize) + 1}: ${totalHits} results`);
+
+    if (i + batchSize < allQueries.length) {
+      await new Promise((r) => setTimeout(r, 500));
+    }
+  }
+
+  return results;
+}
+
+export function formatSearchResults(results: SearchResult[]): string {
+  const withHits = results.filter((r) => r.hits.length > 0);
+  if (withHits.length === 0) return '';
+
+  const sections = withHits.map((r) => {
+    const hits = r.hits
+      .map((h) => `- **${h.title}**\n  ${h.url}\n  ${h.description}`)
+      .join('\n');
+    return hits;
+  });
+
+  return `## LinkedIn and web search results for small RFPs and consultancy calls\n\nThese are indexed posts and pages found via targeted search. Many are individual consultant or small-team RFPs posted on LinkedIn and sector job boards. Extract any that match Sonder's profile.\n\n${sections.join('\n\n')}`;
 }

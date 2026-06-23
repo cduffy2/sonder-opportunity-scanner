@@ -153,7 +153,9 @@ Run each of the following searches and surface relevant results:
 
 **Types of work to surface:** consultancy contracts, RFPs, tenders, invitations to quote (ITQs), terms of reference, strategy, research, design, implementation support, advisory, solution development, data visualisation, platform design, software development, grants, innovation challenges, fellowship programmes with a research or design component, community grants open to cooperatives or social enterprises.
 
-**Aim for a balanced mix:** at least half of results should be consultancy/RFP/tender opportunities (paid work), not just grants and challenges.
+**Aim for a balanced mix:** at least half of results must be consultancy/RFP/tender opportunities (paid work), not grants or challenges. If you have fewer than 4 RFP/consultancy results after scanning all sources, run additional web searches before returning.
+
+**Actively look for small-team and individual consultant RFPs** — organisations posting on LinkedIn, job boards, or their own websites seeking a single consultant or small team (2–5 people) for design, research, strategy, or digital work. These are high-value for Sonder. Include them even if the budget is not specified.
 
 **Types of clients/funders to include:** foundations, multilaterals, UN agencies, NGOs, bilateral donors, innovation funds, government digital agencies, impact-focused start-ups and accelerators, corporate CSR programmes, think tanks and research institutes, ocean and environmental organisations.
 
