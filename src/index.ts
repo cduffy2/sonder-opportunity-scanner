@@ -45,10 +45,10 @@ async function main() {
     console.log(`Link: ${opp.link}`);
   });
 
-  await postSummaryHeader(newOpps.length);
+  const threadTs = await postSummaryHeader(newOpps.length);
 
   for (const opp of newOpps) {
-    await postOpportunity(opp);
+    await postOpportunity(opp, threadTs);
     seen.add(opp.link);
     // Small delay to avoid rate-limiting
     await new Promise((r) => setTimeout(r, 500));

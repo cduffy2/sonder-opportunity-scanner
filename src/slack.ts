@@ -1,6 +1,7 @@
 import { Opportunity } from './types';
 
-const WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL!;
+const SLACK_TOKEN = process.env.SLACK_BOT_TOKEN!;
+const CHANNEL_ID = process.env.SLACK_CHANNEL_ID!;
 
 const WIN_EMOJI: Record<string, string> = {
   High: '🟢',
@@ -8,7 +9,29 @@ const WIN_EMOJI: Record<string, string> = {
   Low: '⚫️',
 };
 
-export async function postOpportunity(opp: Opportunity): Promise<void> {
+async function slackPost(payload: Record<string, unknown>): Promise<any> {
+  const res = await fetch('https://slack.com/api/chat.postMessage', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${SLACK_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ channel: CHANNEL_ID, ...payload }),
+  });
+
+  const json = await res.json() as any;
+  if (!json.ok) throw new Error(`Slack API error: ${json.error}`);
+  return json;
+}
+
+export async function postSummaryHeader(count: number): Promise<string> {
+  const json = await slackPost({
+    text: `🔍 *${count} new opportunit${count === 1 ? 'y' : 'ies'} this week*\nSome may not be a direct fit for Sonder, but could be a reason to reconnect with a former client or colleague. Review in the thread below.`,
+  });
+  return json.ts as string;
+}
+
+export async function postOpportunity(opp: Opportunity, threadTs: string): Promise<void> {
   const emoji = WIN_EMOJI[opp.win_probability] ?? '⚪';
   const sectors = opp.sectors.join(', ');
 
@@ -61,27 +84,5 @@ export async function postOpportunity(opp: Opportunity): Promise<void> {
     { type: 'divider' },
   ];
 
-  const res = await fetch(WEBHOOK_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ blocks }),
-  });
-
-  if (!res.ok) {
-    throw new Error(`Slack webhook failed: ${res.status} ${await res.text()}`);
-  }
-}
-
-export async function postSummaryHeader(count: number): Promise<void> {
-  const today = new Date().toLocaleDateString('en-GB', {
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
-  });
-
-  await fetch(WEBHOOK_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      text: `*🔭 Sonder Opportunity Scan — ${today}*\n${count} new opportunit${count === 1 ? 'y' : 'ies'} found.`,
-    }),
-  });
+  await slackPost({ blocks, thread_ts: threadTs });
 }
