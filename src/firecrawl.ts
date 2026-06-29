@@ -73,8 +73,8 @@ async function scrapeOne(label: string, url: string): Promise<ScrapeResult> {
       return { label, url, markdown: '', error: 'No content returned' };
     }
 
-    // Truncate to keep context manageable (~4000 chars per source)
-    const markdown = result.markdown.slice(0, 4000);
+    // Truncate to keep context manageable (~2000 chars per source)
+    const markdown = result.markdown.slice(0, 2000);
     return { label, url, markdown };
   } catch (err) {
     return { label, url, markdown: '', error: String(err) };
@@ -137,7 +137,7 @@ async function runSearch(query: string): Promise<SearchResult> {
     const hits = items.map((item: any) => ({
       url: item.url ?? '',
       title: item.title ?? '',
-      description: item.description ?? '',
+      description: (item.description ?? '').slice(0, 150),
     }));
     return { query, hits };
   } catch (err) {
