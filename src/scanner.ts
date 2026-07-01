@@ -3,6 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { Opportunity } from './types';
 import { scrapeAllTier1Sources, formatScrapedContent, runLinkedInAndRFPSearches, formatSearchResults } from './firecrawl';
+import { scrapeWithBrowser, formatBrowserResults } from './browser';
 
 const client = new Anthropic();
 
@@ -38,14 +39,16 @@ export async function scanOpportunities(): Promise<Opportunity[]> {
   const year = now.getFullYear();
   const twoWeeksAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
 
-  // Pre-scrape Tier 1 sources and run LinkedIn/RFP searches in parallel
-  const [scrapeResults, searchResults] = await Promise.all([
+  // Pre-scrape Tier 1 sources, run LinkedIn/RFP searches, and browser-scrape JS-heavy sources in parallel
+  const [scrapeResults, searchResults, browserResults] = await Promise.all([
     scrapeAllTier1Sources(),
     runLinkedInAndRFPSearches(),
+    scrapeWithBrowser(),
   ]);
 
   const scrapedContent = formatScrapedContent(scrapeResults);
   const searchContent = formatSearchResults(searchResults);
+  const browserContent = formatBrowserResults(browserResults);
 
   const failedScrapes = scrapeResults.filter((r) => r.markdown.length === 0);
   if (failedScrapes.length > 0) {
@@ -64,6 +67,8 @@ Requirements:
 - Return up to 10 opportunities. If the scraped and search content contains fewer than 3 strong matches, return what genuinely exists — do not invent or include expired opportunities to pad results.
 
 ${scrapedContent}
+
+${browserContent}
 
 ${searchContent}`,
     },

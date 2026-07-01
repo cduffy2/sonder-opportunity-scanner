@@ -16,8 +16,8 @@ const RFP_SEARCH_QUERIES = [
   'site:fundsforngos.org "request for proposals" OR "consultancy" OR "terms of reference" design OR research OR digital',
   'site:impactpool.org "consultant" "design" OR "UX" OR "research" OR "digital"',
   'site:developmentaid.org "consultant" "design" OR "UX" OR "research" OR "digital"',
-  'site:reliefweb.int "design" OR "UX" OR "research" OR "digital health" OR "information systems" 2026',
-  'site:reliefweb.int "call for bids" OR "request for proposals" OR "tender" 2026',
+  'site:reliefweb.int "human-centred design" OR "user research" OR "service design" OR "digital product" OR "behavioural change" 2026',
+  'site:reliefweb.int "call for bids" OR "request for proposals" OR "tender" "design" OR "research" OR "digital" 2026',
   'site:ungm.org "design" OR "UX" OR "research" OR "digital" OR "health information" 2026',
 ];
 
