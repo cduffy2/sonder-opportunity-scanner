@@ -16,6 +16,8 @@ const RFP_SEARCH_QUERIES = [
   'site:fundsforngos.org "request for proposals" OR "consultancy" OR "terms of reference" design OR research OR digital',
   'site:impactpool.org "consultant" "design" OR "UX" OR "research" OR "digital"',
   'site:developmentaid.org "consultant" "design" OR "UX" OR "research" OR "digital"',
+  'site:reliefweb.int "consultant" OR "tender" "design" OR "UX" OR "research" OR "digital health" 2026',
+  'site:ungm.org "design" OR "UX" OR "research" OR "digital" OR "health information" 2026',
 ];
 
 // All Tier 1 sources to scrape directly each run
@@ -36,15 +38,11 @@ const TIER1_SOURCES = [
   { label: 'Echoing Green', url: 'https://echoinggreen.org/fellowship/' },
   { label: 'Skoll Foundation', url: 'https://skoll.org/skoll-foundation/grant-making/' },
   // Tier 1b — Consultancy, RFP, and tenders
-  { label: 'UN Global Marketplace', url: 'https://www.ungm.org/Public/Notice' },
-  { label: 'ReliefWeb Tenders', url: 'https://reliefweb.int/jobs?type%5B%5D=1068&type%5B%5D=1071' },
   { label: 'Design Gigs for Good', url: 'https://www.designgigsforgood.com/' },
   { label: 'Sustainable Ocean Alliance', url: 'https://sustainableocean.com/programs/' },
   { label: 'PATH Procurement', url: 'https://www.path.org/our-work/procurement/' },
   { label: 'Gavi Procurement', url: 'https://www.gavi.org/programme-support/procurement' },
   { label: 'Funds for NGOs', url: 'https://www.fundsforngos.org/category/requests-for-proposals/' },
-  { label: 'ImpactPool Consultancies', url: 'https://www.impactpool.org/jobs?type=consultancy' },
-  { label: 'DevelopmentAid Consultancies', url: 'https://www.developmentaid.org/jobs/search#type=consultant' },
   { label: 'EU TED Tenders', url: 'https://ted.europa.eu/en/search/result?query=design+OR+research+OR+UX&scope=ACTIVE' },
   { label: 'UNDP Procurement Notices', url: 'https://procurement-notices.undp.org/' },
   { label: 'Contracts Finder UK', url: 'https://www.contractsfinder.service.gov.uk/Search/Results' },
