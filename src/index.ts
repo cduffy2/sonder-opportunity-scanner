@@ -14,8 +14,14 @@ async function main() {
 
   const activeOpps = opportunities.filter((o) => {
     if (o.deadline === 'Rolling' || o.deadline === 'Unknown') return true;
-    const d = new Date(o.deadline);
-    if (isNaN(d.getTime())) return true; // unparseable — let it through
+    // Try ISO first, then "DD Month YYYY" and "Month DD, YYYY" formats
+    let d = new Date(o.deadline);
+    if (isNaN(d.getTime())) {
+      // "22 May 2026" or "May 22, 2026"
+      const normalized = o.deadline.replace(/(\d{1,2})\s([A-Za-z]+)\s(\d{4})/, '$2 $1, $3');
+      d = new Date(normalized);
+    }
+    if (isNaN(d.getTime())) return true; // truly unparseable — let it through
     if (d < today) {
       console.log(`Filtered out expired opportunity: "${o.opportunity_title}" (deadline: ${o.deadline})`);
       return false;

@@ -61,7 +61,7 @@ Requirements:
 - Only include opportunities that are currently open or upcoming — not expired or already awarded.
 - Prioritise opportunities posted or updated after ${twoWeeksAgo} (within the last 14 days). Only include older opportunities if they are still clearly open and highly relevant.
 - The current year is ${year}. Pre-run search results are included below — analyse them directly.
-- Return between 3 and 10 opportunities only. Quality over quantity — do not pad results with low-relevance items to hit a minimum. Only include Low relevance items if you cannot find enough High or Medium ones.
+- Return between 3 and 10 opportunities. You MUST return at least 3 — include Low relevance items if needed to reach the minimum.
 
 ${scrapedContent}
 

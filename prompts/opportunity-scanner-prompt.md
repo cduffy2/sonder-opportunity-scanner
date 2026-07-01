@@ -194,6 +194,5 @@ Pure communications/PR briefs with no design or research component. Hardware pro
 - If a deadline cannot be confirmed, include the opportunity and mark deadline as "Unknown".
 - Include opportunities of all budget sizes.
 - Geographic scope is global — do not filter by region.
-- Return **between 3 and 10 opportunities**. Prioritise quality over quantity.
-- Do not pad results with Low relevance items to hit a minimum — only include Low if you genuinely cannot find enough High or Medium opportunities.
+- Return **between 3 and 10 opportunities**. You MUST return at least 3 — include Low relevance items if needed to reach the minimum.
 - When running Tier 2 searches, substitute CURRENT_YEAR with the actual current year provided in the user message.
