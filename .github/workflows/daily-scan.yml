@@ -43,4 +43,5 @@ jobs:
           git config user.email "bot@sonder.noreply"
           git add data/seen-opportunities.json
           git diff --staged --quiet || git commit -m "chore: update seen opportunities [skip ci]"
+          git pull --rebase origin main
           git push
