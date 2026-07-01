@@ -2,14 +2,6 @@ import FirecrawlApp from '@mendable/firecrawl-js';
 
 const client = new FirecrawlApp({ apiKey: process.env.FIRECRAWL_API_KEY! });
 
-const LINKEDIN_SEARCH_QUERIES = [
-  'site:linkedin.com "request for proposals" OR "terms of reference" "design" OR "UX" OR "researcher" "consultant" "global health" OR "social impact" OR "nonprofit"',
-  'site:linkedin.com "individual consultant" OR "small team" "design" OR "UX" OR "user research" "NGO" OR "nonprofit" OR "social impact"',
-  'site:linkedin.com "invitation to quote" OR "ITQ" OR "request for quotation" "design" OR "research" OR "digital" "social" OR "health" OR "development"',
-  'site:linkedin.com "call for applications" OR "open call" "consultant" OR "consultancy" "design" OR "research" OR "strategy" "impact" OR "wellbeing" OR "health"',
-  'site:linkedin.com "RFP" "UX" OR "design" OR "human-centred" OR "human-centered" "global health" OR "humanitarian" OR "international development"',
-];
-
 const RFP_SEARCH_QUERIES = [
   '"request for proposals" "individual consultant" OR "small team" "UX" OR "design" OR "user research" "global health" OR "nonprofit" OR "NGO" 2026',
   '"terms of reference" "consultant" "digital" OR "design" OR "research" "social impact" OR "wellbeing" OR "community" 2026',
@@ -146,8 +138,8 @@ async function runSearch(query: string): Promise<SearchResult> {
 }
 
 export async function runLinkedInAndRFPSearches(): Promise<SearchResult[]> {
-  const allQueries = [...LINKEDIN_SEARCH_QUERIES, ...RFP_SEARCH_QUERIES];
-  console.log(`Running ${allQueries.length} LinkedIn/RFP searches via Firecrawl...`);
+  const allQueries = [...RFP_SEARCH_QUERIES];
+  console.log(`Running ${allQueries.length} RFP searches via Firecrawl...`);
 
   // Run in parallel batches of 5
   const results: SearchResult[] = [];
