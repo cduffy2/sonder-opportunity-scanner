@@ -118,25 +118,9 @@ These are corporate grant programmes that fund nonprofits and social ventures. S
 
 Search broadly: `"[funder name]" "grant" OR "community grant" OR "call for applications" CURRENT_YEAR`
 
-### Tier 2 — Broader web search queries
+### Tier 2 — Pre-run search results
 
-Run each of the following searches and surface relevant results:
-
-**Consultancy and RFP searches (prioritise these):**
-- `"request for proposals" OR "terms of reference" "UX" OR "design" OR "user research" "global health" OR "humanitarian" CURRENT_YEAR`
-- `"terms of reference" "consultancy" "digital" OR "design" OR "research" "WHO" OR "UNICEF" OR "UNDP" CURRENT_YEAR`
-- `"invitation to quote" OR "ITQ" "research" OR "design" OR "insights" "social venture" OR "social enterprise" OR "impact" CURRENT_YEAR`
-- `"call for applications" OR "open call" "community grant" OR "wellbeing grant" OR "social impact grant" CURRENT_YEAR`
-
-**Grant and challenge searches:**
-- `"call for proposals" OR "RFP" "UX" OR "design" OR "research" site:who.int`
-- `"Horizon Europe" "design" OR "digital health" OR "social innovation" "call for proposals" CURRENT_YEAR`
-- `"call for applications" "nonprofit" OR "NGO" "wellbeing" OR "community" OR "health" grant CURRENT_YEAR`
-- `"ecosystem insights" OR "scaling insights" OR "systems change" "consultancy" OR "partner" OR "research" CURRENT_YEAR`
-
-**Scan LinkedIn and social sources for recently posted opportunities:**
-- Search: `site:linkedin.com "call for applications" OR "open call" OR "grant" OR "RFP" "social impact" OR "wellbeing" OR "global health" CURRENT_YEAR`
-- Search: `"Imma Collective" OR "Philanthropy Women" OR "GrantStation" "grant" OR "RFP" OR "opportunity" CURRENT_YEAR` — these newsletters curate opportunities that mainstream sources miss
+The following searches were already run before this prompt was sent. Results are provided in the "Search Results" section of the user message. Analyse those results directly — do not attempt to run additional web searches.
 
 ---
 

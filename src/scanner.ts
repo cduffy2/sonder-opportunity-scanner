@@ -60,7 +60,7 @@ export async function scanOpportunities(): Promise<Opportunity[]> {
 Requirements:
 - Only include opportunities that are currently open or upcoming — not expired or already awarded.
 - Prioritise opportunities posted or updated after ${twoWeeksAgo} (within the last 14 days). Only include older opportunities if they are still clearly open and highly relevant.
-- When running Tier 2 searches, use ${year} as the year in all search queries.
+- The current year is ${year}. Pre-run search results are included below — analyse them directly.
 - Return between 3 and 10 opportunities only. Quality over quantity — do not pad results with low-relevance items to hit a minimum. Only include Low relevance items if you cannot find enough High or Medium ones.
 
 ${scrapedContent}
@@ -72,7 +72,6 @@ ${searchContent}`,
   const response = await client.messages.create({
     model: 'claude-sonnet-4-5',
     max_tokens: 4096,
-    tools: [{ type: 'web_search_20250305', name: 'web_search' }],
     system: systemPrompt,
     messages,
   });
