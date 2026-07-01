@@ -109,14 +109,19 @@ async function scrapeUNGMNotices(): Promise<BrowserScrapeResult[]> {
 
 export async function scrapeWithBrowser(): Promise<BrowserScrapeResult[]> {
   console.log('Scraping ReliefWeb and UNGM with headless browser...');
-  const [reliefweb, ungm] = await Promise.all([
-    scrapeReliefWebTenders(),
-    scrapeUNGMNotices(),
-  ]);
-  const all = [...reliefweb, ...ungm];
-  const succeeded = all.filter((r) => r.markdown.length > 0).length;
-  console.log(`  Browser scrape: ${succeeded}/${all.length} pages extracted`);
-  return all;
+  try {
+    const [reliefweb, ungm] = await Promise.all([
+      scrapeReliefWebTenders(),
+      scrapeUNGMNotices(),
+    ]);
+    const all = [...reliefweb, ...ungm];
+    const succeeded = all.filter((r) => r.markdown.length > 0).length;
+    console.log(`  Browser scrape: ${succeeded}/${all.length} pages extracted`);
+    return all;
+  } catch (err) {
+    console.log(`  Browser scrape failed: ${String(err)}`);
+    return [];
+  }
 }
 
 export function formatBrowserResults(results: BrowserScrapeResult[]): string {

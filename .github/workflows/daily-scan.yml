@@ -44,7 +44,15 @@ jobs:
         run: |
           git config user.name "opportunity-scanner[bot]"
           git config user.email "bot@sonder.noreply"
+          git fetch origin main
+          # Merge remote seen list with local (union of both sets)
+          node -e "
+            const fs = require('fs');
+            const local = JSON.parse(fs.readFileSync('data/seen-opportunities.json', 'utf-8'));
+            const remote = JSON.parse(require('child_process').execSync('git show origin/main:data/seen-opportunities.json').toString());
+            const merged = [...new Set([...remote, ...local])];
+            fs.writeFileSync('data/seen-opportunities.json', JSON.stringify(merged, null, 2));
+          "
           git add data/seen-opportunities.json
           git diff --staged --quiet || git commit -m "chore: update seen opportunities [skip ci]"
-          git pull --rebase origin main
           git push
