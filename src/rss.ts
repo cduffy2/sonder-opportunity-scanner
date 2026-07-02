@@ -1,10 +1,4 @@
-const RSS_FEEDS = [
-  {
-    label: 'Hard Problems Job Board',
-    url: 'https://www.hardproblems.com/jobs/feed.xml',
-    note: 'Mostly full-time roles at mission-driven orgs. Flag relevant orgs as potential clients or sub-contract partners, not direct opportunities unless clearly consultancy/contract.',
-  },
-];
+const RSS_FEEDS: Array<{ label: string; url: string; note: string }> = [];
 
 interface RssItem {
   title: string;
