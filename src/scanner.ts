@@ -4,6 +4,7 @@ import * as path from 'path';
 import { Opportunity } from './types';
 import { scrapeAllTier1Sources, formatScrapedContent, runLinkedInAndRFPSearches, formatSearchResults } from './firecrawl';
 import { scrapeWithBrowser, formatBrowserResults } from './browser';
+import { fetchAllRssFeeds, formatRssContent } from './rss';
 
 const client = new Anthropic();
 
@@ -39,16 +40,18 @@ export async function scanOpportunities(): Promise<Opportunity[]> {
   const year = now.getFullYear();
   const twoWeeksAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
 
-  // Pre-scrape Tier 1 sources, run LinkedIn/RFP searches, and browser-scrape JS-heavy sources in parallel
-  const [scrapeResults, searchResults, browserResults] = await Promise.all([
+  // Pre-scrape Tier 1 sources, run LinkedIn/RFP searches, browser-scrape JS-heavy sources, and fetch RSS feeds in parallel
+  const [scrapeResults, searchResults, browserResults, rssResults] = await Promise.all([
     scrapeAllTier1Sources(),
     runLinkedInAndRFPSearches(),
     scrapeWithBrowser(),
+    fetchAllRssFeeds(),
   ]);
 
   const scrapedContent = formatScrapedContent(scrapeResults);
   const searchContent = formatSearchResults(searchResults);
   const browserContent = formatBrowserResults(browserResults);
+  const rssContent = formatRssContent(rssResults);
 
   const failedScrapes = scrapeResults.filter((r) => r.markdown.length === 0);
   if (failedScrapes.length > 0) {
@@ -70,7 +73,9 @@ ${scrapedContent}
 
 ${browserContent}
 
-${searchContent}`,
+${searchContent}
+
+${rssContent}`,
     },
   ];
 
