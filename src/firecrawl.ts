@@ -39,6 +39,7 @@ const TIER1_SOURCES = [
   { label: 'EU TED Tenders', url: 'https://ted.europa.eu/en/search/result?query=design+OR+research+OR+UX&scope=ACTIVE' },
   { label: 'UNDP Procurement Notices', url: 'https://procurement-notices.undp.org/' },
   { label: 'Contracts Finder UK', url: 'https://www.contractsfinder.service.gov.uk/Search/Results' },
+  { label: 'Hard Problems Jobs', url: 'https://www.hardproblems.com/jobs' },
 ];
 
 export interface ScrapeResult {
